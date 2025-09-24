@@ -32,12 +32,12 @@ export function ContactForm() {
         throw new Error('Network response was not ok');
       }
       
-      // 3. CHANGED TOAST CALLS
+      
       toast.success("Your message has been sent successfully!");
       (event.target as HTMLFormElement).reset();
 
     } catch (error) {
-      // 3. CHANGED TOAST CALLS
+      console.error('Error sending message:', error);
       toast.error("Failed to send message. Please try again later.");
     } finally {
       setLoading(false);
