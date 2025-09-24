@@ -8,7 +8,7 @@ import Link from "next/link";
 export function HeroSection() {
   return (
     <section className="flex items-center justify-center text-center min-h-screen -mt-16">
-      {/* We use -mt-16 to pull the section up to compensate for the header's height */}
+      
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
