@@ -1,14 +1,12 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { Github, Linkedin, FileDown } from "lucide-react";
-import React from "react";
 
 export function HeroSection() {
-  // Staggered animation setup
   const title = "Harpreet Singh".split(" ");
   const subtitle = "Full-Stack Developer".split(" ");
 
@@ -35,41 +33,15 @@ export function HeroSection() {
     },
   };
 
-  // Parallax effect setup
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const rotateX_bg = useTransform(y, [0, 500], [20, -20]);
-  const rotateY_bg = useTransform(x, [0, 500], [-20, 20]);
-  const rotateX_fg = useTransform(y, [0, 500], [10, -10]);
-  const rotateY_fg = useTransform(x, [0, 500], [-10, 10]);
-  
-  const handleMouseMove = (event: React.MouseEvent) => {
-    const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
-    x.set(event.clientX - rect.left);
-    y.set(event.clientY - rect.top);
-  };
-
   return (
-    <section 
-      onMouseMove={handleMouseMove}
-      className="relative flex items-center justify-center min-h-screen -mt-16 overflow-hidden"
-      style={{ perspective: '1000px' }}
-    >
+    <section className="relative flex items-center justify-center min-h-screen -mt-16 overflow-hidden">
       
-      <motion.div 
-        aria-hidden="true" 
-        className="absolute inset-0 -z-10"
-        style={{ rotateX: rotateX_bg, rotateY: rotateY_bg }}
-      >
+      <div aria-hidden="true" className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-0 h-96 w-96 rounded-full bg-purple-500/30 filter blur-3xl animate-blob"></div>
         <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-blue-500/30 filter blur-3xl animate-blob animation-delay-2000"></div>
-      </motion.div>
+      </div>
 
-      <motion.div 
-        className="relative z-10 grid items-center gap-8 px-4 md:grid-cols-2 md:gap-16"
-        style={{ rotateX: rotateX_fg, rotateY: rotateY_fg }}
-      >
+      <div className="relative z-10 grid items-center gap-8 px-4 md:grid-cols-2 md:gap-16">
         
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -135,7 +107,7 @@ export function HeroSection() {
               </div>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
