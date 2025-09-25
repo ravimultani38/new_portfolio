@@ -5,10 +5,12 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { Toaster } from "sonner";
 import { PageTransition } from "@/components/page-transition";
+import { AnimatedBackground } from "@/components/animated-background";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://harpreetsingh.co'),
   title: "Harpreet Singh | Full-Stack Developer",
   description: "Full-stack developer specializing in creating modern, high-performance web applications with React, Next.js, and Node.js.",
   keywords: ["Harpreet Singh", "Full-Stack Developer", "Next.js", "React", "TypeScript", "Portfolio"],
@@ -37,6 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
+        <AnimatedBackground />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

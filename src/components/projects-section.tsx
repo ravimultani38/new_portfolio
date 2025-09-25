@@ -41,7 +41,7 @@ const projects = [
   {
     title: "Twitter Clone",
     description: "A native Android application that mimics the core functionality of Twitter, including posting and viewing tweets.",
-    image: "/project-twitter-clone.jpg",
+    image: "/twitter.gif",
     stack: ["Android", "Java"],
     github: "https://github.com/ravimultani38/SimpleTwitter",
     live: "#",
@@ -49,7 +49,7 @@ const projects = [
     {
     title: "Flixster",
     description: "A movie browsing application for Android that displays currently playing movies using the Movie Database API.",
-    image: "/project-flixster.jpg",
+    image: "/flixster.gif",
     stack: ["Android", "Java", "API"],
     github: "https://github.com/ravimultani38/Flixster",
     live: "#",
@@ -57,7 +57,7 @@ const projects = [
   {
     title: "Instagram Clone",
     description: "An Android app that replicates key features of Instagram, allowing users to post photos and view a feed.",
-    image: "/project-instagram-clone.jpg",
+    image: "/insta.gif",
     stack: ["Android", "Java"],
     github: "https://github.com/ravimultani38/instragram",
     live: "#",
@@ -70,7 +70,7 @@ export function ProjectsSection() {
       <h2 className="text-3xl md:text-4xl font-bold mb-12">My Projects</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (
-          <Card key={project.title} className="flex flex-col">
+          <Card key={project.title} className="flex flex-col transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30">
             <CardHeader className="flex-grow">
               <div className="aspect-video relative mb-4">
                 <Image
@@ -78,6 +78,7 @@ export function ProjectsSection() {
                   alt={`${project.title} screenshot`}
                   fill
                   className="rounded-md object-cover"
+                  unoptimized
                 />
               </div>
               <CardTitle>{project.title}</CardTitle>
