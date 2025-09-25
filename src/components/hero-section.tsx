@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion"; // 1. IMPORT VARIANTS TYPE
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,7 +10,8 @@ export function HeroSection() {
   const title = "Harpreet Singh".split(" ");
   const subtitle = "Full-Stack Developer".split(" ");
 
-  const containerVariants = {
+  // 2. APPLY THE VARIANTS TYPE
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -21,7 +22,8 @@ export function HeroSection() {
     },
   };
 
-  const itemVariants = {
+  // 2. APPLY THE VARIANTS TYPE
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
@@ -36,16 +38,13 @@ export function HeroSection() {
   return (
     <section className="relative flex items-center justify-center min-h-screen -mt-16 overflow-hidden">
       
-      {/* Container for the animated shapes */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-0 h-96 w-96 rounded-full bg-purple-500/30 filter blur-3xl animate-blob"></div>
         <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-blue-500/30 filter blur-3xl animate-blob animation-delay-2000"></div>
       </div>
 
-      {/* Main content grid */}
       <div className="relative z-10 grid items-center gap-8 px-4 md:grid-cols-2 md:gap-16">
         
-        {/* Avatar Image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -61,7 +60,6 @@ export function HeroSection() {
           />
         </motion.div>
 
-        {/* Text and Links */}
         <div className="text-center md:text-left">
           <motion.h1
             className="text-5xl md:text-7xl font-bold tracking-tighter font-display"
@@ -98,7 +96,6 @@ export function HeroSection() {
                 Crafting elegant, high-performance web solutions from concept to
                 deployment.
               </p>
-              {/* Social Links & Resume */}
               <div className="mt-6 flex gap-4 justify-center md:justify-start">
                   <Link href="https://github.com/ravimultani38" target="_blank">
                       <Button variant="outline" size="icon"><Github className="h-5 w-5"/></Button>
@@ -106,7 +103,6 @@ export function HeroSection() {
                    <Link href="https://linkedin.com/in/ravimultani38" target="_blank">
                       <Button variant="outline" size="icon"><Linkedin className="h-5 w-5"/></Button>
                   </Link>
-                  {/* Add your resume PDF to the /public folder */}
                   <a href="/Harpreet-Singh-Resume.pdf" download>
                       <Button>Download Resume <FileDown className="ml-2 h-5 w-5"/></Button>
                   </a>
