@@ -30,7 +30,7 @@ const timelineEvents = [
 export function ExperienceSection() {
   return (
     <section id="experience" className="container mx-auto text-center py-24 sm:py-32">
-      <h2 className="text-3xl md:text-4xl font-bold mb-16">Experience & Education</h2>
+      <h2 className="text-3xl md:text-4xl font-bold mb-16 font-display">Experience & Education</h2>
       <div className="relative max-w-2xl mx-auto">
         {/* The vertical line */}
         <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-border"></div>

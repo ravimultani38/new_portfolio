@@ -1,36 +1,119 @@
-// src/components/hero-section.tsx
 "use client";
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
+import { Github, Linkedin, FileDown } from "lucide-react";
 
 export function HeroSection() {
+  const title = "Harpreet Singh".split(" ");
+  const subtitle = "Full-Stack Developer".split(" ");
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   return (
-    <section className="flex items-center justify-center text-center min-h-screen -mt-16">
+    <section className="relative flex items-center justify-center min-h-screen -mt-16 overflow-hidden">
       
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="space-y-4"
-      >
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">
-          Harpreet Singh
-        </h1>
-        <p className="text-xl md:text-2xl text-muted-foreground">
-          Full-Stack Developer
-        </p>
-        <p className="max-w-xl mx-auto pt-2">
-          Crafting elegant, high-performance web solutions from concept to
-          deployment.
-        </p>
-        <div className="pt-4">
-          <Link href="#projects">
-            <Button size="lg">View My Work</Button>
-          </Link>
+      {/* Container for the animated shapes */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10">
+        <div className="absolute top-0 left-0 h-96 w-96 rounded-full bg-purple-500/30 filter blur-3xl animate-blob"></div>
+        <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-blue-500/30 filter blur-3xl animate-blob animation-delay-2000"></div>
+      </div>
+
+      {/* Main content grid */}
+      <div className="relative z-10 grid items-center gap-8 px-4 md:grid-cols-2 md:gap-16">
+        
+        {/* Avatar Image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 1.5, ease: "easeOut" }}
+          className="flex justify-center md:justify-end"
+        >
+          <Image
+            src="/profile-photo.jpg"
+            alt="Harpreet Singh's Photo"
+            width={280}
+            height={280}
+            className="rounded-full aspect-square object-cover border-4 border-primary/50 shadow-lg"
+          />
+        </motion.div>
+
+        {/* Text and Links */}
+        <div className="text-center md:text-left">
+          <motion.h1
+            className="text-5xl md:text-7xl font-bold tracking-tighter font-display"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {title.map((word, index) => (
+              <motion.span key={index} variants={itemVariants} className="inline-block mr-[0.25em]">
+                {word}
+              </motion.span>
+            ))}
+          </motion.h1>
+
+          <motion.p
+            className="text-xl md:text-2xl text-muted-foreground mt-2"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {subtitle.map((word, index) => (
+              <motion.span key={index} variants={itemVariants} className="inline-block mr-[0.25em]">
+                {word}
+              </motion.span>
+            ))}
+          </motion.p>
+          
+          <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2, ease: "easeInOut" }}
+          >
+              <p className="max-w-xl pt-4">
+                Crafting elegant, high-performance web solutions from concept to
+                deployment.
+              </p>
+              {/* Social Links & Resume */}
+              <div className="mt-6 flex gap-4 justify-center md:justify-start">
+                  <Link href="https://github.com/ravimultani38" target="_blank">
+                      <Button variant="outline" size="icon"><Github className="h-5 w-5"/></Button>
+                  </Link>
+                   <Link href="https://linkedin.com/in/ravimultani38" target="_blank">
+                      <Button variant="outline" size="icon"><Linkedin className="h-5 w-5"/></Button>
+                  </Link>
+                  {/* Add your resume PDF to the /public folder */}
+                  <a href="/Harpreet-Singh-Resume.pdf" download>
+                      <Button>Download Resume <FileDown className="ml-2 h-5 w-5"/></Button>
+                  </a>
+              </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

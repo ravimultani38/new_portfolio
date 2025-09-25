@@ -1,18 +1,21 @@
+"use client"; // Required for the tilt effect
+
 import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
+import Tilt from "react-parallax-tilt"; // Import the Tilt component
 
 const projects = [
   {
-    title: "65 St Wine and Liquor Store", // <-- 1. TITLE CHANGED
+    title: "65 St Wine and Liquor Store",
     description: "Built and maintained full-stack e-commerce features, including shopping cart, checkout, and Stripe integration.",
-    image: "/project-65spirits.jpg", 
+    image: "/project-65spirits.jpg",
     stack: ["Next.js", "Stripe", "Tailwind CSS", "Sanity.io"],
     github: "#",
-    live: "https://www.65spirits.com/", // <-- 2. LIVE LINK ADDED
+    live: "https://www.65spirits.com/",
   },
   {
     title: "CUNY Connect",
@@ -36,7 +39,7 @@ const projects = [
     image: "/project-royal-turban.jpg",
     stack: ["Next.js", "Sanity.io", "Tailwind CSS"],
     github: "#",
-    live: "https://www.royalturbanny.com/", // <-- 3. LIVE LINK CORRECTED
+    live: "https://www.royalturbanny.com/",
   },
   {
     title: "Twitter Clone",
@@ -67,41 +70,43 @@ const projects = [
 export function ProjectsSection() {
   return (
     <section id="projects" className="container mx-auto text-center py-24 sm:py-32">
-      <h2 className="text-3xl md:text-4xl font-bold mb-12">My Projects</h2>
+      <h2 className="text-3xl md:text-4xl font-bold mb-12 font-display">My Projects</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (
-          <Card key={project.title} className="flex flex-col transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30">
-            <CardHeader className="flex-grow">
-              <div className="aspect-video relative mb-4">
-                <Image
-                  src={project.image}
-                  alt={`${project.title} screenshot`}
-                  fill
-                  className="rounded-md object-cover"
-                  unoptimized
-                />
-              </div>
-              <CardTitle>{project.title}</CardTitle>
-              <CardDescription className="text-left pt-2">{project.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.stack.map((tech) => (
-                  <Badge key={tech} variant="secondary">{tech}</Badge>
-                ))}
-              </div>
-              <div className="flex gap-4">
-                <Link href={project.github} target="_blank" className="flex-1">
-                  <Button className="w-full" disabled={project.github === "#"}>GitHub</Button>
-                </Link>
-                <Link href={project.live} target="_blank" className="flex-1">
-                    <Button variant="outline" className="w-full" disabled={project.live === "#"}>
-                      Live Demo <ExternalLink className="ml-2 h-4 w-4"/>
-                    </Button>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
+          <Tilt key={project.title} glareEnable={true} glareMaxOpacity={0.3} glarePosition="all">
+            <Card className="flex flex-col h-full">
+              <CardHeader className="flex-grow">
+                <div className="aspect-video relative mb-4">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    fill
+                    className="rounded-md object-cover"
+                    unoptimized
+                  />
+                </div>
+                <CardTitle>{project.title}</CardTitle>
+                <CardDescription className="text-left pt-2">{project.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.stack.map((tech) => (
+                    <Badge key={tech} variant="secondary">{tech}</Badge>
+                  ))}
+                </div>
+                <div className="flex gap-4">
+                  <Link href={project.github} target="_blank" className="flex-1">
+                    <Button className="w-full" disabled={project.github === "#"}>GitHub</Button>
+                  </Link>
+                  <Link href={project.live} target="_blank" className="flex-1">
+                      <Button variant="outline" className="w-full" disabled={project.live === "#"}>
+                        Live Demo <ExternalLink className="ml-2 h-4 w-4"/>
+                      </Button>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          </Tilt>
         ))}
       </div>
     </section>

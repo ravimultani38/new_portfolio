@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Calistoga } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
@@ -7,7 +7,17 @@ import { Toaster } from "sonner";
 import { PageTransition } from "@/components/page-transition";
 import { AnimatedBackground } from "@/components/animated-background";
 
-const inter = Inter({ subsets: ["latin"] });
+// 1. ADD `variable` PROPERTY TO INTER FONT
+const inter = Inter({ 
+  subsets: ["latin"], 
+  variable: "--font-inter" 
+});
+
+const calistoga = Calistoga({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-calistoga",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://harpreetsingh.co'),
@@ -17,11 +27,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Harpreet Singh | Full-Stack Developer",
     description: "Modern web applications built with cutting-edge technology.",
-    url: "https://harpreetsingh.co", // Change to your domain
+    url: "https://harpreetsingh.co",
     siteName: "Harpreet Singh's Portfolio",
     images: [
       {
-        url: "/og-image.png", // Create an open graph image (1200x630) and add it to your /public folder
+        url: "/og-image.png",
         width: 1200,
         height: 630,
       },
@@ -37,8 +47,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+    <html lang="en" className={`${inter.variable} ${calistoga.variable}`} suppressHydrationWarning>
+     
+      <body>
         <AnimatedBackground />
         <ThemeProvider
           attribute="class"
@@ -46,9 +57,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          <PageTransition>{children}</PageTransition>
-          <Toaster richColors position="top-right" />
+          
+          <div className="font-sans">
+            <Header />
+            <PageTransition>{children}</PageTransition>
+            <Toaster richColors position="top-right" />
+          </div>
         </ThemeProvider>
       </body>
     </html>
