@@ -6,8 +6,8 @@ import { Header } from "@/components/header";
 import { Toaster } from "sonner";
 import { PageTransition } from "@/components/page-transition";
 import { AnimatedBackground } from "@/components/animated-background";
+import { ThemeApplier } from "@/components/theme-applier";
 
-// 1. ADD `variable` PROPERTY TO INTER FONT
 const inter = Inter({ 
   subsets: ["latin"], 
   variable: "--font-inter" 
@@ -48,21 +48,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${calistoga.variable}`} suppressHydrationWarning>
-     
       <body>
-        <AnimatedBackground />
         <ThemeProvider
-          attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          
-          <div className="font-sans">
-            <Header />
-            <PageTransition>{children}</PageTransition>
-            <Toaster richColors position="top-right" />
-          </div>
+          <ThemeApplier>
+            <AnimatedBackground />
+            <div className="font-sans">
+              <Header />
+              <PageTransition>{children}</PageTransition>
+              <Toaster richColors position="top-right" />
+            </div>
+          </ThemeApplier>
         </ThemeProvider>
       </body>
     </html>
