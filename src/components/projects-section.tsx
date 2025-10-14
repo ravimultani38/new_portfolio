@@ -12,7 +12,7 @@ const projects = [
   {
     title: "65 St Wine and Liquor Store",
     description: "Built and maintained full-stack e-commerce features, including shopping cart, checkout, and Stripe integration.",
-    image: "/project-65spirits.jpg",
+    image: "/65spirits.gif",
     stack: ["Next.js", "Stripe", "Tailwind CSS", "Sanity.io"],
     github: "#",
     live: "https://www.65spirits.com/",
@@ -20,7 +20,7 @@ const projects = [
   {
     title: "CUNY Connect",
     description: "A centralized student portal with real-time alerts, authentication, and a responsive UI built with the MERN stack.",
-    image: "/project-cuny-connect.jpg",
+    image: "/cuny_connect.jpg",
     stack: ["React", "Node.js", "MongoDB", "WebSockets"],
     github: "https://github.com/ravimultani38/hackathon1",
     live: "#",
@@ -28,7 +28,7 @@ const projects = [
   {
     title: "Park Out",
     description: "A real-time parking availability app featuring secure, role-based authentication and Google Maps API integration.",
-    image: "/project-park-out.jpg",
+    image: "/park.gif",
     stack: ["React", "MongoDB", "Google Maps API", "JWT"],
     github: "https://github.com/ravimultani38/ctp_parking",
     live: "#",
@@ -36,7 +36,7 @@ const projects = [
   {
     title: "Royal Turban NY",
     description: "A high-performance, statically generated portfolio website for a professional service, using a headless CMS.",
-    image: "/project-royal-turban.jpg",
+    image: "/royal_turban.gif",
     stack: ["Next.js", "Sanity.io", "Tailwind CSS"],
     github: "#",
     live: "https://www.royalturbanny.com/",
