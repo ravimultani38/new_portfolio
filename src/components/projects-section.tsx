@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
-import Tilt from "react-parallax-tilt"; // Import the Tilt component
+import Tilt from "react-parallax-tilt"; 
 
 const projects = [
   {
