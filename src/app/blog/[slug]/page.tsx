@@ -3,14 +3,14 @@ import { groq } from "next-sanity";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
+// Revalidate the page every 60 seconds
+export const revalidate = 60; 
 
-export const revalidate = 60;
-
-
+// Define a type for our post data
 interface Post {
   title: string;
   mainImage?: string;
-  body: any[]; 
+  body: any[]; // Portable Text content is an array of objects
 }
 
 const query = groq`
@@ -34,7 +34,9 @@ export async function generateStaticParams() {
 
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post: Post = await client.fetch(query, { slug: params.slug });
+  // THE FIX: Await the params object before using its properties
+  const { slug } = await params;
+  const post: Post = await client.fetch(query, { slug });
 
   return (
     <article className="container mx-auto py-24 sm:py-32">
