@@ -2,6 +2,7 @@ import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
+import type { PortableTextBlock } from "sanity"; // <-- 1. IMPORT THE CORRECT TYPE
 
 // Revalidate the page every 60 seconds
 export const revalidate = 60; 
@@ -10,7 +11,7 @@ export const revalidate = 60;
 interface Post {
   title: string;
   mainImage?: string;
-  body: any[]; // Portable Text content is an array of objects
+  body: PortableTextBlock[]; // <-- 2. APPLY THE CORRECT TYPE
 }
 
 const query = groq`
@@ -34,7 +35,6 @@ export async function generateStaticParams() {
 
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  // THE FIX: Await the params object before using its properties
   const { slug } = await params;
   const post: Post = await client.fetch(query, { slug });
 
