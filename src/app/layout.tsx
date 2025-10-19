@@ -6,11 +6,12 @@ import { Header } from "@/components/header";
 import { Toaster } from "sonner";
 import { PageTransition } from "@/components/page-transition";
 import { AnimatedBackground } from "@/components/animated-background";
-import { ThemeApplier } from "@/components/theme-applier";
 
-const inter = Inter({ 
-  subsets: ["latin"], 
-  variable: "--font-inter" 
+import { ScrollProgressIndicator } from "@/components/scroll-progress-indicator"; 
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter"
 });
 
 const calistoga = Calistoga({
@@ -20,14 +21,14 @@ const calistoga = Calistoga({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://harpreetsingh.co'),
+  metadataBase: new URL('https://harpreetbuilds.com'), 
   title: "Harpreet Singh | Full-Stack Developer",
   description: "Full-stack developer specializing in creating modern, high-performance web applications with React, Next.js, and Node.js.",
   keywords: ["Harpreet Singh", "Full-Stack Developer", "Next.js", "React", "TypeScript", "Portfolio"],
   openGraph: {
     title: "Harpreet Singh | Full-Stack Developer",
     description: "Modern web applications built with cutting-edge technology.",
-    url: "https://harpreetsingh.co",
+    url: "https://harpreetbuilds.com", 
     siteName: "Harpreet Singh's Portfolio",
     images: [
       {
@@ -48,20 +49,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${calistoga.variable}`} suppressHydrationWarning>
-      <body>
+      <body className="font-sans">
         <ThemeProvider
+          attribute="class" // Restored attribute="class" for standard theme handling
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <ThemeApplier>
-            <AnimatedBackground />
-            <div className="font-sans">
-              <Header />
-              <PageTransition>{children}</PageTransition>
-              <Toaster richColors position="top-right" />
-            </div>
-          </ThemeApplier>
+          <ScrollProgressIndicator /> {/* <-- ADDED SCROLL INDICATOR */}
+          <AnimatedBackground />
+          <Header />
+          <PageTransition>{children}</PageTransition>
+          <Toaster richColors position="top-right" />
         </ThemeProvider>
       </body>
     </html>
