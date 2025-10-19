@@ -7,7 +7,7 @@ import { Toaster } from "sonner";
 import { PageTransition } from "@/components/page-transition";
 import { AnimatedBackground } from "@/components/animated-background";
 import { MobileNav } from "@/components/mobile-nav";
-import { ScrollProgressIndicator } from "@/components/scroll-progress-indicator"; 
+import { ScrollProgressIndicator } from "@/components/scroll-progress-indicator";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,14 +21,14 @@ const calistoga = Calistoga({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://harpreetbuilds.com'), 
+  metadataBase: new URL('https://harpreetbuilds.com'),
   title: "Harpreet Singh | Full-Stack Developer",
   description: "Full-stack developer specializing in creating modern, high-performance web applications with React, Next.js, and Node.js.",
   keywords: ["Harpreet Singh", "Full-Stack Developer", "Next.js", "React", "TypeScript", "Portfolio"],
   openGraph: {
     title: "Harpreet Singh | Full-Stack Developer",
     description: "Modern web applications built with cutting-edge technology.",
-    url: "https://harpreetbuilds.com", 
+    url: "https://harpreetbuilds.com",
     siteName: "Harpreet Singh's Portfolio",
     images: [
       {
@@ -49,14 +49,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${calistoga.variable}`} suppressHydrationWarning>
-      <body className="font-sans">
+      {/* Add padding-bottom for mobile nav (h-16 = 4rem) */}
+      <body className="font-sans pb-16 md:pb-0"> {/* <-- CORRECTED LINE */}
         <ThemeProvider
-          attribute="class" // Restored attribute="class" for standard theme handling
+          attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <ScrollProgressIndicator /> {/* <-- ADDED SCROLL INDICATOR */}
+          <ScrollProgressIndicator />
           <AnimatedBackground />
           <Header />
           <PageTransition>{children}</PageTransition>
