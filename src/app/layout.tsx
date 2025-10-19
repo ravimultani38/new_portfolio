@@ -48,24 +48,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // Removed overflow-x-hidden from html
     <html lang="en" className={`${inter.variable} ${calistoga.variable}`} suppressHydrationWarning>
-      {/* Moved overflow-x-hidden to body */}
-      <body className="font-sans pb-16 md:pb-0 overflow-x-hidden">
+      {/* Removed overflow-x-hidden from body */}
+      <body className="font-sans pb-16 md:pb-0">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <ScrollProgressIndicator />
+          {/* Ensure background is truly outside the main flow */}
           <AnimatedBackground />
-          {/* Added min-h-screen to this wrapper */}
-          <div className="min-h-screen">
+          <ScrollProgressIndicator />
+
+          {/* Apply overflow-x-hidden to the main content wrapper */}
+          <div className="min-h-screen relative z-10 overflow-x-hidden">
              <Header />
              <PageTransition>{children}</PageTransition>
              <Toaster richColors position="top-right" />
           </div>
+
           <MobileNav />
         </ThemeProvider>
       </body>
