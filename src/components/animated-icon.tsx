@@ -11,8 +11,8 @@ interface AnimatedIconProps {
 
 export function AnimatedIcon({ children, className }: AnimatedIconProps) {
   const { ref, inView } = useInView({
-    triggerOnce: true, 
-    threshold: 0.5,   
+    triggerOnce: true, // Only trigger the animation once
+    threshold: 0.5,    // Trigger when 50% of the icon is visible
   });
 
   // Apply the Variants type here
@@ -43,8 +43,8 @@ export function AnimatedIcon({ children, className }: AnimatedIconProps) {
         if (child.type === 'path') {
           return (
             <motion.path
-              // Explicitly cast child.props to any to fix spread type error
-              {...(child.props as any)}
+              // THE FIX: Use Record<string, unknown> instead of any
+              {...(child.props as Record<string, unknown>)}
               variants={iconVariants}
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
