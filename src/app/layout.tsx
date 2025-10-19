@@ -6,7 +6,7 @@ import { Header } from "@/components/header";
 import { Toaster } from "sonner";
 import { PageTransition } from "@/components/page-transition";
 import { AnimatedBackground } from "@/components/animated-background";
-
+import { MobileNav } from "@/components/mobile-nav";
 import { ScrollProgressIndicator } from "@/components/scroll-progress-indicator"; 
 
 const inter = Inter({
@@ -61,6 +61,7 @@ export default function RootLayout({
           <Header />
           <PageTransition>{children}</PageTransition>
           <Toaster richColors position="top-right" />
+          <MobileNav />
         </ThemeProvider>
       </body>
     </html>

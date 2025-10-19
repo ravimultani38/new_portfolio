@@ -5,12 +5,11 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { Github, Linkedin, FileDown } from "lucide-react";
-
+import { AnimatedIcon } from "./animated-icon"; // Make sure this import is here
 
 export function HeroSection() {
   const title = "Harpreet Singh".split(" ");
   const subtitle = "Full-Stack Developer".split(" ");
-
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -38,9 +37,7 @@ export function HeroSection() {
   return (
     <section className="relative flex items-center justify-center min-h-screen -mt-16 overflow-hidden">
       
-     
       <div aria-hidden="true" className="absolute inset-0 -z-10">
-       
         <div className="absolute top-0 left-0 h-96 w-96 rounded-full bg-purple-500/30 filter blur-3xl animate-blob"></div>
         <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-blue-500/30 filter blur-3xl animate-blob animation-delay-2000"></div>
       </div>
@@ -100,10 +97,18 @@ export function HeroSection() {
               </p>
               <div className="mt-6 flex gap-4 justify-center md:justify-start">
                   <Link href="https://github.com/ravimultani38" target="_blank">
-                      <Button variant="outline" size="icon"><Github className="h-5 w-5"/></Button>
+                      <Button variant="outline" size="icon">
+                        <AnimatedIcon className="h-5 w-5">
+                          <Github />
+                        </AnimatedIcon>
+                      </Button>
                   </Link>
                    <Link href="https://linkedin.com/in/ravimultani38" target="_blank">
-                      <Button variant="outline" size="icon"><Linkedin className="h-5 w-5"/></Button>
+                      <Button variant="outline" size="icon">
+                        <AnimatedIcon className="h-5 w-5">
+                          <Linkedin />
+                        </AnimatedIcon>
+                      </Button>
                   </Link>
                   <a href="/Harpreet-Singh-Resume.pdf" download>
                       <Button>Download Resume <FileDown className="ml-2 h-5 w-5"/></Button>
