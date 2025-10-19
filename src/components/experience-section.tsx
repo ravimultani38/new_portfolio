@@ -1,3 +1,5 @@
+
+
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 
 const timelineEvents = [
@@ -33,23 +35,26 @@ export function ExperienceSection() {
       <h2 className="text-3xl md:text-4xl font-bold mb-16 font-display">Experience & Education</h2>
       <div className="relative max-w-2xl mx-auto">
         {/* The vertical line */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-border"></div>
+        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-border -z-10"></div> {/* Added -z-10 */}
 
         {/* Timeline items */}
         {timelineEvents.map((event, index) => (
           <div key={index} className="relative mb-12">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full mt-1.5"></div>
-            <Card className={`w-[calc(50%-2rem)] ${index % 2 === 0 ? 'mr-auto' : 'ml-auto'}`}>
+            {/* Dot on the line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full mt-1.5 border-2 border-background"></div> {/* Added border */}
+            <Card className={`w-[calc(50%-2rem)] ${index % 2 === 0 ? 'mr-auto text-right' : 'ml-auto text-left'}`}> {/* Adjusted text alignment */}
               <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
+                {/* Corrected Flex Container for Header */}
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1"> {/* Changed flex behavior */}
+                  <div className={`sm:flex-grow ${index % 2 === 0 ? 'sm:text-right' : 'sm:text-left'}`}> {/* Ensure text aligns correctly */}
                     <CardTitle>{event.role}</CardTitle>
                     <p className="font-semibold">{event.company}</p>
                   </div>
-                  <p className="text-sm text-muted-foreground whitespace-nowrap">{event.date}</p>
+                  {/* Reduced date font size and added shrink-0 */}
+                  <p className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap sm:shrink-0">{event.date}</p>
                 </div>
               </CardHeader>
-              <CardContent className="text-left">
+              <CardContent>
                 <p className="text-muted-foreground">{event.description}</p>
               </CardContent>
             </Card>
