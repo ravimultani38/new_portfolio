@@ -48,9 +48,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${calistoga.variable}`} suppressHydrationWarning>
-      {/* Add padding-bottom for mobile nav (h-16 = 4rem) */}
-      <body className="font-sans pb-16 md:pb-0"> {/* <-- CORRECTED LINE */}
+    // Add overflow-x-hidden here
+    <html lang="en" className={`${inter.variable} ${calistoga.variable} overflow-x-hidden`} suppressHydrationWarning>
+      <body className="font-sans pb-16 md:pb-0">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
