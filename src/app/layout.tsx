@@ -49,20 +49,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${calistoga.variable}`} suppressHydrationWarning>
-      {/* Removed overflow-x-hidden from body */}
-      <body className="font-sans pb-16 md:pb-0">
+      {/* This is the most stable layout configuration:
+        - `overflow-x-hidden` on the body prevents horizontal scroll issues.
+        - `pb-16 md:pb-0` creates space for the mobile nav, preventing content from being hidden.
+      */}
+      <body className="font-sans pb-16 md:pb-0 overflow-x-hidden">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {/* Ensure background is truly outside the main flow */}
+          {/* These components are fixed/absolute and sit outside the main content flow */}
           <AnimatedBackground />
           <ScrollProgressIndicator />
 
-          {/* Apply overflow-x-hidden to the main content wrapper */}
-          <div className="min-h-screen relative z-10 overflow-x-hidden">
+         
+          <div className="relative z-10">
              <Header />
              <PageTransition>{children}</PageTransition>
              <Toaster richColors position="top-right" />
