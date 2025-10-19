@@ -5,14 +5,13 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { Github, Linkedin, FileDown } from "lucide-react";
-import dynamic from "next/dynamic";
+
 
 export function HeroSection() {
   const title = "Harpreet Singh".split(" ");
   const subtitle = "Full-Stack Developer".split(" ");
-const HeroScene = dynamic(() => import('@/components/hero-scene').then(mod => mod.HeroScene), {
-  ssr: false, // Ensure it only renders on the client side
-});
+
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -39,8 +38,9 @@ const HeroScene = dynamic(() => import('@/components/hero-scene').then(mod => mo
   return (
     <section className="relative flex items-center justify-center min-h-screen -mt-16 overflow-hidden">
       
+     
       <div aria-hidden="true" className="absolute inset-0 -z-10">
-        <HeroScene />
+       
         <div className="absolute top-0 left-0 h-96 w-96 rounded-full bg-purple-500/30 filter blur-3xl animate-blob"></div>
         <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-blue-500/30 filter blur-3xl animate-blob animation-delay-2000"></div>
       </div>
@@ -54,7 +54,7 @@ const HeroScene = dynamic(() => import('@/components/hero-scene').then(mod => mo
           className="flex justify-center md:justify-end"
         >
           <Image
-            src="/profile-photo.jpg"
+            src="/headshot.jpg" // Ensure this image exists in your /public folder
             alt="Harpreet Singh's Photo"
             width={280}
             height={280}
